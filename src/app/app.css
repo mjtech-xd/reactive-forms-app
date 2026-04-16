@@ -156,3 +156,27 @@ input.ng-invalid.ng-touched
 {
     background-color: #dbeafe;
 }
+
+.address-section
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f8fafc;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+}
+
+.address-section h3
+{
+    margin: 0px 0px 16px 0px;
+    font-size: 16px;
+    color: #334155;
+}
+
+.optional-label
+{
+    font-size: 12px;
+    font-weight: normal;
+    color: #94a3b8;
+}

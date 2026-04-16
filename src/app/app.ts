@@ -43,9 +43,16 @@ export class App {
         ]
       }),
       phoneNumbers: this.fb.array([]),
-      age: this.nonfb.control(0, { validators: [Validators.min(18), Validators.max(120)] })
-
-    }, {
+      age: this.nonfb.control(0, { validators: [Validators.min(18), Validators.max(120)] }),
+      
+      address: this.fb.group({
+        street: this.nonfb.control(''),
+        city: this.nonfb.control(''),
+        state: this.nonfb.control(''),
+        zipCode: this.nonfb.control('', { validators: [Validators.pattern(/^[0-9]+$/)] })
+      })
+    }, 
+    {
       validators: [
         passwordsMatch
       ]
@@ -82,6 +89,31 @@ export class App {
 
   get age(): FormControl {
     return this.registrationForm.get('age') as FormControl;
+  }
+
+  get address(): FormGroup
+  {
+    return this.registrationForm.get('address') as FormGroup;
+  }
+
+  get street(): FormControl
+  {
+    return this.address.get('street') as FormControl;
+  }
+
+  get city(): FormControl
+  {
+    return this.address.get('city') as FormControl;
+  }
+
+  get state(): FormControl
+  {
+    return this.address.get('state') as FormControl;
+  }
+
+  get zipCode(): FormControl
+  {
+    return this.address.get('zipCode') as FormControl;
   }
 
   addPhoneNumber(): void {
