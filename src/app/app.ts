@@ -1,8 +1,7 @@
 import { JsonPipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { noSpaces, minUppercase } from './validators/validators';
-import { min } from 'rxjs';
+import { FormArray, FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { noSpaces, minUppercase, passwordsMatch } from './validators/validators';
 
 @Component({
   selector: 'app-root',
@@ -11,30 +10,47 @@ import { min } from 'rxjs';
   styleUrl: './app.css'
 })
 export class App {
-  registrationForm = new FormGroup({
-    username: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(20),
-        Validators.pattern(/^[a-zA-Z0-9]+$/),
-        noSpaces
+  registrationForm: FormGroup;
+  constructor(private fb: FormBuilder,
+    private nonfb: NonNullableFormBuilder
+  ) {
+    this.registrationForm = this.fb.group({
+      username: this.nonfb.control('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(20),
+          Validators.pattern(/^[a-zA-Z0-9]+$/),
+          noSpaces
+        ]
+      }),
+      email: this.nonfb.control('', {
+        validators: [
+          Validators.required,
+          Validators.email
+        ]
+      }),
+      password: this.nonfb.control('', {
+        validators: [
+          Validators.required,
+          Validators.minLength(6),
+          minUppercase(1)
+        ]
+      }),
+      confirmPassword: this.nonfb.control('', {
+        validators: [
+          Validators.required
+        ]
+      }),
+      phoneNumbers: this.fb.array([]),
+      age: this.nonfb.control(0, { validators: [Validators.min(18), Validators.max(120)] })
+
+    }, {
+      validators: [
+        passwordsMatch
       ]
-    }),
-    email: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.email
-      ]
-    }),
-    password: new FormControl('', {
-      nonNullable: true, validators: [
-        Validators.required,
-        Validators.minLength(6),
-        minUppercase(1)
-      ]
-    })
-  });
+    });
+  }
 
   onSubmit(): void {
     if (this.registrationForm.invalid) {
@@ -45,18 +61,36 @@ export class App {
     console.log(this.registrationForm.get('username'));
   }
 
-  get username(): FormControl 
-  {
+  get username(): FormControl {
     return this.registrationForm.get('username') as FormControl;
   }
 
-  get email(): FormControl
-  {
+  get email(): FormControl {
     return this.registrationForm.get('email') as FormControl;
   }
 
-  get password(): FormControl
-  {
+  get password(): FormControl {
     return this.registrationForm.get('password') as FormControl;
+  }
+
+  get confirmPassword(): FormControl {
+    return this.registrationForm.get('confirmPassword') as FormControl;
+  }
+  get phoneNumbers(): FormArray {
+    return this.registrationForm.get('phoneNumbers') as FormArray;
+  }
+
+  get age(): FormControl {
+    return this.registrationForm.get('age') as FormControl;
+  }
+
+  addPhoneNumber(): void {
+    this.phoneNumbers.push(this.nonfb.control('', {
+      validators: [Validators.required]
+    }))
+  }
+
+  removePhoneNumber(index: number): void {
+    this.phoneNumbers.removeAt(index);
   }
 }
