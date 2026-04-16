@@ -1,5 +1,9 @@
 <div class="container">
   <h1>Registration Form</h1>
+  <div class ="action-buttons">
+    <button type ="button" (click)="fillSampleData()">Fill Sample Data</button>
+    <button type ="button" (click)="fillAddressOnly()">Fill Address Only</button>
+  </div>
 
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class=" form-group">

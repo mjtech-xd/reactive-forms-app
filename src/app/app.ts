@@ -125,4 +125,40 @@ export class App {
   removePhoneNumber(index: number): void {
     this.phoneNumbers.removeAt(index);
   }
+
+  fillSampleData(): void 
+  {
+    //First added 2 phone number controls
+    this.addPhoneNumber();
+    this.addPhoneNumber();
+    this.registrationForm.setValue({
+      username: 'JohnDoe',
+      email: 'john.doe@example.com',
+      password: 'Password123',
+      confirmPassword: 'Password123',
+      age: 25,
+      address: {
+        street : '123 Main St',
+        city: 'New York',
+        state: 'New York',
+        zipCode: '12345'
+      },
+      phoneNumbers: [
+        '1234567890',
+        '9876543210'
+      ]
+    })
+  }
+
+  fillAddressOnly(): void
+  {
+    this.registrationForm.patchValue({
+      address: {
+        street : '456 Oak St',
+        city: 'New York',
+        state: 'New York',
+        zipCode: '12345'
+      }
+    })
+  }
 }
