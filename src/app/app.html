@@ -5,6 +5,15 @@
     <button type ="button" (click)="fillAddressOnly()">Fill Address Only</button>
   </div>
 
+  <div class ="action-buttons">
+    <button type ="button" (click)="resetForm()">Reset</button>
+    <button type ="button" (click)="resetToDefaults()">Reset to Default</button>
+  </div>
+
+  <div class ="action-buttons">
+    <button type ="button" (click)="toggelEmail()">Toggle Email</button>
+  </div>
+
   <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
     <div class=" form-group">
       <label for="username">Username</label>
