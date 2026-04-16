@@ -87,3 +87,72 @@ input.ng-invalid.ng-touched
 {
     border-color: #dc2626;
 }
+
+.phone-number-section
+{
+    margin-top: 24px;
+    margin-bottom: 24px;
+}
+.phone-number-section h3
+{
+    margin: 20px 0 12px 0;
+    font-size: 16px; 
+    color: #1a1a2e;
+}
+
+.phone-number-row
+{
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.phone-number-row input
+{
+    flex: 1;
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.phone-number-row input:focus
+{
+    border-color: #3182fe;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.phone-number-row button
+{
+    padding: 10px 16px;
+    width: auto;
+    margin: 0;
+    background-color: #ef4444;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.phone-number-row button:hover
+{
+    background-color: #dc2626;
+}
+
+.phone-number-section > button
+{
+    margin-top: 8px;
+    width: 50%;
+    font-size: 14px;
+    padding: 10px 16px;
+    color: #3b82fe;
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.phone-number-section > button:hover
+{
+    background-color: #dbeafe;
+}
