@@ -95,6 +95,34 @@
         }
       </div>
     </div>
+
+    <div class ="address-section">
+      <h3>Address<span class ="optional-label"> (optional)</span></h3>
+      <div formGroupName="address">
+        <div class ="form-group">
+          <label for ="street">Street</label>
+          <input type ="text" id ="street" formControlName="street" />
+        </div>
+        <div class ="form-group">
+          <label for ="city">City</label>
+          <input type ="text" id ="city" formControlName="city" />
+        </div>
+        <div class ="form-group">
+          <label for ="state">State</label>
+          <input type ="text" id ="state" formControlName="state" />
+        </div>
+        <div class ="form-group">
+          <label for ="zipcode">Zip Code</label>
+          <input type ="text" id ="zipCode" formControlName="zipCode" />
+          <div class ="error-messages">
+            @if(registrationForm.get('address.zipCode')?.errors?.['pattern'] && registrationForm.get('address.zipCode')?.touched)
+            {
+            <span>Zip code must contain only numbers.</span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="form-group" class="phone-number-section">
       <h3>Phone Numbers</h3>
       <div formArrayName="phoneNumbers">
